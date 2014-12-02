@@ -1,4 +1,4 @@
-FROM c3h3/oblas-py278-shogun
+FROM c3h3/u1404-ocv-shogun
 
 MAINTAINER Chia-Chi Chang <c3h3.tw@gmail.com>
 
