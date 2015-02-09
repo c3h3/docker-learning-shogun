@@ -1,21 +1,8 @@
-FROM c3h3/oblas-py278-shogun
+FROM c3h3/pyenv-opencv-shogun:u1404-py278-ipynb
 
 MAINTAINER Chia-Chi Chang <c3h3.tw@gmail.com>
 
-EXPOSE 8888
-ENV IPYNB_PROFILE "c3h3-dark"
-#ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/lib
-
-RUN git clone https://github.com/c3h3/oblas-py278-shogun-demo /demo_ipynbs
-RUN cd /demo_ipynbs && git submodule init && git submodule update
+RUN git clone https://github.com/c3h3/learning-shogun.git /demo_ipynbs && cd /demo_ipynbs && git submodule init && git submodule update
 
 WORKDIR demo_ipynbs
-
-RUN pip install networkx
-RUN ipython profile create c3h3-dark
-
-ADD c3h3_custom.css /root/.ipython/profile_c3h3-dark/static/custom/custom.css
-COPY ipython_notebook_config.py /root/.ipython/profile_c3h3-dark/ipython_notebook_config.py 
-COPY ipython_notebook_config.py /root/.ipython/profile_default/ipython_notebook_config.py
-CMD ipython notebook --no-browser --ip=0.0.0.0 --port 8888 --profile=$IPYNB_PROFILE
 
